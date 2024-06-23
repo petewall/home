@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+  node-exporter:
+    privileged: true
+    image: prom/node-exporter
+    container_name: node-exporter
+    restart: always
+    ports:
+      - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - "--path.procfs=/host/proc"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.ignored-mount-points"
+      - "^/(rootfs/)?(dev|etc|host|proc|run|sys|volume1)($$|/)"
+  alloy:
+    image: grafana/alloy
+    container_name: alloy
+    restart: always
+    ports:
+      - "12345:12345"
+    volumes:
+      - /volume1/docker/container-configs/telemetry/config.alloy:/etc/alloy/config.alloy:ro \
+    env_file: "/volume1/docker/container-configs/telemetry/config.env"
+    command:
+      - "run"
+      - "--server.http.listen-addr=0.0.0.0:12345"
+      - "--storage.path=/var/lib/alloy/data"
+      - "/etc/alloy/config.alloy"
