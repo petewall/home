@@ -1,12 +1,12 @@
 # Synology Storage device
 
-## Installed packages:
+## Packages
 
-* Container Manager
-* Homebridge
-* Plex Media Server
-* Resilio Sync
+* [Container Manager](https://www.synology.com/dsm/packages/ContainerManager)
+* [Homebridge](https://github.com/homebridge/homebridge/wiki/Install-Homebridge-on-Synology-DSM)
+* [Plex Media Server](https://www.plex.tv/media-server-downloads/?cat=nas&plat=synology#plex-media-server)
+* [Resilio Sync](https://www.synology.com/en-us/dsm/packages/resiliosync)
 
-## Containers
+## Container Projects
 
 * [telemetry](./telemetry)
